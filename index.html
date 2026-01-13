@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Career Readiness Portfolio | Jordan Syring</title>
+  <meta name="description" content="Career Readiness Portfolio with artifacts and reflections aligned to Spartan Ready® competencies." />
+
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1024;
+      --card: rgba(255,255,255,0.07);
+      --card2: rgba(255,255,255,0.10);
+      --stroke: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --muted2: rgba(255,255,255,0.55);
+
+      --a1:#7C3AED; /* purple */
+      --a2:#22C55E; /* green  */
+      --a3:#06B6D4; /* cyan   */
+      --a4:#F97316; /* orange */
+      --shadow: 0 20px 60px rgba(0,0,0,0.45);
+      --radius: 22px;
+
+      --ring: 0 0 0 3px rgba(124,58,237,0.35);
+    }
+
+    [data-theme="light"]{
+      --bg0:#F7F7FF;
+      --bg1:#EDEBFF;
+      --card: rgba(255,255,255,0.72);
+      --card2: rgba(255,255,255,0.86);
+      --stroke: rgba(10,10,30,0.10);
+      --text: rgba(10,10,30,0.92);
+      --muted: rgba(10,10,30,0.70);
+      --muted2: rgba(10,10,30,0.55);
+      --shadow: 0 18px 45px rgba(10,10,30,0.18);
+      --ring: 0 0 0 3px rgba(124,58,237,0.25);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 900px at 10% 5%, rgba(124,58,237,0.35), transparent 55%),
+        radial-gradient(900px 650px at 85% 20%, rgba(6,182,212,0.28), transparent 55%),
+        radial-gradient(900px 700px at 50% 100%, rgba(34,197,94,0.22), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    /* subtle animated grain */
+    .grain{
+      pointer-events:none;
+      position:fixed;
+      inset:-30%;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.10'/%3E%3C/svg%3E");
+      transform:translateZ(0);
+      animation: grainMove 10s steps(8) infinite;
+      mix-blend-mode: overlay;
+      opacity:.22;
+    }
+    @keyframes grainMove{
+      0%{ transform:translate(-5%, -10%) }
+      25%{ transform:translate(-10%, 5%) }
+      50%{ transform:translate(5%, 10%) }
+      75%{ transform:translate(10%, -5%) }
+      100%{ transform:translate(-5%, -10%) }
+    }
+
+    .container{
+      width:min(1100px, 92vw);
+      margin:0 auto;
+      padding: 28px 0 90px;
+    }
+
+    /* Top nav */
+    .nav{
+      position:sticky;
+      top:14px;
+      z-index:50;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 14px;
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.05));
+      backdrop-filter: blur(14px);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding-left:6px;
+      user-select:none;
+    }
+    .logo{
+      width:34px; height:34px;
+      border-radius: 12px;
+      background: conic-gradient(from 220deg, var(--a1), var(--a3), var(--a2), var(--a4), var(--a1));
+      box-shadow: 0 10px 24px rgba(124,58,237,0.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.75), transparent 55%);
+      transform: rotate(25deg);
+      opacity:.35;
+    }
+    .brand b{ font-weight:800; letter-spacing:.2px; }
+    .brand span{ color:var(--muted2); font-size:.92rem; }
+
+    .links{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .links a{
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:650;
+      font-size:.92rem;
+      padding:9px 10px;
+      border-radius:999px;
+      transition: transform .22s ease, background .22s ease, color .22s ease;
+    }
+    .links a:hover{
+      background: rgba(255,255,255,0.10);
+      color:var(--text);
+      transform: translateY(-1px);
+    }
+
+    .btn{
+      appearance:none;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.08);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-weight:700;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.12); }
+    .btn:focus{ outline:none; box-shadow: var(--ring); }
+
+    .btnPrimary{
+      border-color: rgba(124,58,237,0.35);
+      background: linear-gradient(135deg, rgba(124,58,237,0.22), rgba(6,182,212,0.16));
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 26px;
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-30%;
+      background:
+        radial-gradient(500px 320px at 20% 30%, rgba(124,58,237,0.33), transparent 60%),
+        radial-gradient(520px 360px at 80% 20%, rgba(6,182,212,0.28), transparent 65%),
+        radial-gradient(520px 360px at 70% 90%, rgba(34,197,94,0.18), transparent 60%);
+      filter: blur(18px);
+      opacity:.85;
+    }
+    .heroInner{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items:center;
+    }
+    @media (max-width: 900px){
+      .heroInner{ grid-template-columns: 1fr; }
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.07);
+      color: var(--muted);
+      font-weight:700;
+      width:max-content;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, white, rgba(255,255,255,0.2));
+      box-shadow: 0 0 0 4px rgba(124,58,237,0.18);
+    }
+
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height:1.05;
+      letter-spacing: -0.8px;
+    }
+    .sub{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height:1.5;
+      max-width: 60ch;
+    }
+
+    .heroActions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+
+    .pillRow{
+      margin-top: 16px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .pill{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.06);
+      padding:10px 12px;
+      border-radius:999px;
+      color: var(--muted);
+      font-weight:700;
+      font-size:.92rem;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .pill i{
+      width:10px;height:10px;border-radius:50%;
+      background: linear-gradient(135deg, var(--a1), var(--a3));
+      display:inline-block;
+    }
+
+    /* Right hero card */
+    .miniCard{
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.05));
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+    }
+    .miniTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 10px;
+    }
+    .tag{
+      font-weight:800;
+      font-size:.8rem;
+      letter-spacing:.35px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.08);
+      color: var(--muted);
+    }
+    .stat{
+      display:grid;
+      gap:6px;
+      padding:12px;
+      border:1px solid var(--stroke);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      margin-top:10px;
+    }
+    .stat b{ font-size:1.05rem; }
+    .stat span{ color:var(--muted2); font-weight:650; font-size:.92rem; }
+
+    /* Section styling */
+    section{
+      margin-top: 26px;
+      padding: 22px;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    section .titleRow{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom: 14px;
+    }
+    section h2{
+      margin:0;
+      font-size: 1.35rem;
+      letter-spacing:-0.4px;
+    }
+    .hint{
+      color: var(--muted2);
+      font-weight:650;
+      font-size:.92rem;
+      margin:0;
+    }
+
+    .grid2{
+    display:grid;
+    gap: 14px;
+
+    /* NEW: responsive columns that avoid “empty slot” look */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    align-items: start;
+    }
+    @media (max-width: 850px){
+    .grid2{ grid-template-columns: 1fr; }
+    }
+
+
+    .card{
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 16px;
+      transition: transform .22s ease, background .22s ease, border-color .22s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .card h3{
+      margin:0 0 8px;
+      font-size: 1.05rem;
+      letter-spacing:-0.3px;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.55;
+    }
+
+    .artifact{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .artifactRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .linkBtn{
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.06);
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: var(--text);
+      font-weight:750;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .linkBtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.10); }
+    .linkBtn small{ color: var(--muted2); font-weight:700; }
+
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:.86rem;
+      padding:2px 8px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+    }
+
+    /* Reflection */
+    .qa{
+      display:grid;
+      gap:12px;
+    }
+    .q{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.06);
+      border-radius:18px;
+      padding:16px;
+    }
+    .q b{
+      display:block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      letter-spacing:-0.2px;
+    }
+    .q textarea{
+      width:100%;
+      min-height: 120px;
+      resize: vertical;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,0.14);
+      background: rgba(10,10,25,0.22);
+      color: var(--text);
+      padding: 12px 12px;
+      font-size: 1rem;
+      line-height:1.5;
+      outline:none;
+      transition: box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+    [data-theme="light"] .q textarea{
+      background: rgba(255,255,255,0.9);
+      border-color: rgba(10,10,30,0.14);
+      color: rgba(10,10,30,0.92);
+    }
+    .q textarea:focus{
+      box-shadow: var(--ring);
+      border-color: rgba(124,58,237,0.35);
+    }
+    .saveRow{
+      margin-top: 12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .saveRow .muted{
+      color: var(--muted2);
+      font-weight:650;
+      font-size:.92rem;
+    }
+    
+    .lockedAnswer{
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid var(--stroke);
+        border-radius: 14px;
+        padding: 12px 12px;
+        font-size: 1rem;
+        white-space: pre-wrap;
+    }
+
+
+    /* Scroll reveal */
+    .reveal{
+      opacity:0;
+      transform: translateY(16px) scale(0.99);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 26px;
+      text-align:center;
+      color: var(--muted2);
+      font-weight:650;
+      padding: 22px 0 0;
+    }
+
+    /* Floating progress bar */
+    .progressWrap{
+      position:fixed;
+      left:0; right:0; top:0;
+      height:3px;
+      z-index:100;
+      background: transparent;
+    }
+    .progressBar{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, var(--a1), var(--a3), var(--a2));
+      box-shadow: 0 10px 30px rgba(6,182,212,0.28);
+      transition: width .08s linear;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+      .reveal{ opacity:1; transform:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="progressWrap"><div class="progressBar" id="progressBar"></div></div>
+  <div class="grain"></div>
+
+  <div class="container">
+    <!-- NAV -->
+    <div class="nav reveal" id="top">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <b>Jordan Syring</b><br/>
+          <span>Career Readiness Portfolio</span>
+        </div>
+      </div>
+
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#artifacts">Artifacts</a>
+        <a href="#reflections">Reflections</a>
+        <a href="#song">Walk-Up Song</a>
+        <button class="btn" id="themeBtn" type="button" title="Toggle theme">
+          <span aria-hidden="true">🌓</span> Theme
+        </button>
+        <!-- <a class="btn btnPrimary" href="#artifacts" title="Jump to artifacts">
+          <span aria-hidden="true">✨</span> View Portfolio
+        </a> -->
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero reveal">
+      <div class="heroInner">
+        <div>
+          <div class="kicker"><span class="dot"></span> Spartan Ready® — Visual Portfolio</div>
+          <h1>Biochemistry + Math → <span style="background:linear-gradient(90deg,var(--a1),var(--a3));-webkit-background-clip:text;background-clip:text;color:transparent;">Biostatistics / Bioinformatics</span></h1>
+          <p class="sub">
+            This site showcases my career readiness artifacts and reflections—built around a common thread:
+            using quantitative skills to improve health outcomes through data-driven science.
+          </p>
+
+          <div class="heroActions">
+            <a class="btn btnPrimary" href="#reflections"><span aria-hidden="true">🧠</span> Read Reflections</a>
+            <a class="btn" href="#artifacts"><span aria-hidden="true">📎</span> See Artifacts</a>
+            <a class="btn" href="#song"><span aria-hidden="true">🎧</span> Walk-Up Song</a>
+          </div>
+
+          <div class="pillRow">
+            <div class="pill"><i></i> Major: Biochemistry (Math Minor)</div>
+            <div class="pill"><i></i> Target Role: Biostatistician / Bioinformatics Scientist or Biochemical Research Specialist</div>
+            <div class="pill"><i></i> Focus: Biotech & Health Data</div>
+          </div>
+        </div>
+
+        <aside class="miniCard">
+          <div class="miniTop">
+            <div class="tag">Portfolio Snapshot</div>
+            <button class="btn" id="printBtn" type="button" title="Print or save as PDF">
+              <span aria-hidden="true">🖨️</span> Print
+            </button>
+          </div>
+
+          <div class="stat">
+            <b>Common Thread</b>
+            <span>Quant + Biology → evidence-based decisions in healthcare/biotech</span>
+          </div>
+          <div class="stat">
+            <b>Artifacts Included</b>
+            <span>Quinncia job interview, elevator pitch, LinkedIn, resume, reflections</span>
+          </div>
+          <div class="stat">
+            <b>Spartan Ready® Plan</b>
+            <span>Build competencies through projects, feedback loops, and internships</span>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <div class="titleRow">
+        <h2>About Me</h2>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Major + Career Goal</h3>
+          <p>
+            Hi, my name is Jordan, I’m a Biochemistry major with a Mathematics minor. I deciding if i want to work in roles like
+            <b>Biostatistician</b> or <b>Bioinformatics Scientist</b> in biotech/health. Or more reaserch focused like a <b>Biochemical Research Specialist</b> focused on addiction. I want to translate
+            real-world biological questions into measurable outcomes using statistics, modeling, and clear communication.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Revised Elevator Pitch</h3>
+          <p id="pitchText">
+            <!-- Replace this with your revised pitch -->
+            Biochemistry undergraduate with a strong analytical and quantitative background, a mathematics minor, and hands-on laboratory experience. Currently a General Chemistry Mentor, supporting student learning through applied chemistry techniques and quantitative problem-solving. Experienced with PCR, gel electrophoresis, NMR, IR spectroscopy, and laboratory data analysis. Interested in undergraduate research opportunities in biochemistry, biostatistics, and data-driven life sciences.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTIFACTS -->
+    <section id="artifacts" class="reveal">
+      <div class="titleRow">
+        <h2>Career Readiness Artifacts</h2>
+      </div>
+
+      <div class="grid2">
+        <div class="card artifact">
+          <h3>1) Quinncia Interview: Major + Future Job</h3>
+          <p>
+            This was my first every interview, I prefromed as I expected (not good) but was definainly a learning experience. I was interview about a job in biostatistics, while I was
+            unprepared about biostatistics because I haven't finished my education. I was still caught of gaurd by the complexictly of the questions. The biggest thing I learned was related back
+            to my education and experience.
+          </p>
+          <div class="artifactRow">
+            <a class="linkBtn" href="interview\Interview analysis for January 12th 2026.pdf" target="_blank" rel="noreferrer">
+              <span aria-hidden="true">🔗</span> Quinncia Summary <small>(link)</small>
+            </a>
+          </div>
+        </div>
+
+        <div class="card artifact">
+        <h3>2) Revised LinkedIn Page</h3>
+        <p>
+            Screenshots showing my revised LinkedIn About section, experience, and skills,
+            aligned with my target role in biostatistics/bioinformatics, or biochemical research.
+        </p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-top:12px;">
+            <a href="screenshots\linkedin_homepage.png" target="_blank">
+            <img src="screenshots\linkedin_homepage.png" alt="LinkedIn About section"
+                style="width:100%; border-radius:12px; border:1px solid var(--stroke);">
+            </a>
+
+            <a href="screenshots\linkedin_experience&education.png" target="_blank">
+            <img src="screenshots\linkedin_experience&education.png" alt="LinkedIn Experience section"
+                style="width:100%; border-radius:12px; border:1px solid var(--stroke);">
+            </a>
+
+            <a href="screenshots\linkedin_skills.png" target="_blank">
+            <img src="screenshots\linkedin_skills.png" alt="LinkedIn Skills section"
+                style="width:100%; border-radius:12px; border:1px solid var(--stroke);">
+            </a>
+        </div>
+
+        <div class="artifactRow" style="margin-top:12px;">
+            <a class="linkBtn" href="https://www.linkedin.com/in/jordansyring" target="_blank" rel="noreferrer">
+            💼 View Full LinkedIn Profile
+            </a>
+        </div>
+        </div>
+
+        <div class="card artifact">
+        <h3>3) Revised Resume</h3>
+        <p>
+            My resume and feedback documents demonstrate how I incorporated professional
+            critique from Quinncia (this was after like 10 attemps to get it good) to improve clarity, impact, and alignment with
+            biostatistics and bioinformatics career paths.
+        </p>
+
+        <div class="artifactRow" style="margin-top:12px;">
+            <a class="linkBtn"
+            href="resume\Jordan Syring Resume.pdf"
+            target="_blank"
+            rel="noreferrer">
+            📄 Download Revised Resume (PDF)
+            </a>
+
+            <a class="linkBtn"
+            href="resume\Resume analysis for Jordan Syring Resume(2).pdf"
+            target="_blank"
+            rel="noreferrer">
+            📝 Quinncia Resume Feedback (PDF)
+            </a>
+        </div>
+
+        <p style="margin-top:10px; color:var(--muted2); font-weight:650;">
+            Feedback highlights improvements in action verbs, quantified accomplishments,
+            and clearer communication of technical skills.
+        </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- REFLECTIONS (LOCKED / NOT EDITABLE) -->
+    <section id="reflections" class="reveal">
+    <div class="titleRow">
+        <h2>Reflection Questions</h2>
+    </div>
+
+    <div class="qa">
+        <div class="q">
+        <b>1) Communication: What have you learned about yourself and career paths that interest you?</b>
+        <p class="lockedAnswer">
+            I learned that I enjoy combining science with problem-solving and quantitative thinking, especially when the work has a real impact on people’s health. Throughout the course, I realized I’m most interested in careers that connect biology to data and decision-making, like biostatistics and bioinformatics, while I also remain interested in research-focused roles in biochemistry. As I explored career paths, I noticed that I feel most motivated when I can explain complex ideas clearly and turn information into something actionable. I also learned that preparation matters more than confidence—when I prepare, my communication improves a lot. Overall, I’m leaving the course with a clearer direction and a better understanding of how my major and math minor can work together in the biotech and health fields.
+        </p>
+        </div>
+
+        <div class="q">
+        <b>2) Self-Awareness & Professionalism: What specific professional skills have you acquired throughout the course? Why are these important for you?</b>
+        <p class="lockedAnswer">
+            I improved professional communication through revising my elevator pitch, updating LinkedIn, and practicing interview responses. All otheses professional displays I did not have before starting this course. I also strengthened organization and attention to detail by applying feedback to my resume and learning how to present experiences with clear impact statements. These skills matter because employers expect clarity, professionalism, and evidence that you can learn from feedback. For a quantitative health career, it’s not enough to have technical ability—you also have to communicate results and work well with others.
+        </p>
+        </div>
+
+        <div class="q">
+        <b>3) Critical Thinking: How do you plan to develop your Spartan Ready® Competencies so that you will be able to grow as a professional once you graduate?</b>
+        <p class="lockedAnswer">
+            I plan to build my competencies by seeking research experiences and internships where I can apply statistics, lab skills, and data analysis to real problems. I will keep improving by asking for feedback regularly and then tracking specific changes I make after receiving it. I also want to develop stronger technical skills by practicing coding and analysis tools used in biostatistics and bioinformatics. To strengthen communication and teamwork, I’ll continue mentoring and working in collaborative academic environments. Over time, these actions will help me become more confident and effective in professional settings.
+        </p>
+        </div>
+
+        <div class="q">
+        <b>4) Professionalism & Life Skills: In the Quinncia Mock Interview and resume review, what feedback did you receive? What did you do well and how can you use that to excel? What are action steps for improvement?</b>
+        <p class="lockedAnswer">
+        The Quinncia mock interview provided detailed feedback on both strengths and areas for improvement. I performed above average overall and demonstrated analytical thinking, but the analysis highlighted several key areas to improve, including answer length, rate of speech, eye contact, and energy variation. My responses were often too short and did not fully showcase my skills or experiences, even when I had relevant examples. I used this feedback to better understand how important preparation and structure are in interviews. Moving forward, my action steps include practicing responses using the STAR method, researching role-specific topics ahead of time, and rehearsing answers to common interview questions to improve confidence and clarity. I will also focus on maintaining better eye contact and adjusting my pacing so interviewers can fully absorb my responses. (I need to improve basicly everything, I think the AI agent through me off a little, but we are moving forward in that direction and talking to AI is something a need to get good at).
+        </p>
+        </div>
+
+        <div class="q">
+        <b>5) If you were walking into an interview, what song would you have playing to announce your arrival?</b>
+        <p class="lockedAnswer">
+            My walk-up song would be <i>I Drink Wine - Adele</i> because this song beautiful it represents reflection, growth, and self-awareness rather than surface-level confidence. It reminds me to stay grounded, honest, and thoughtful, which is the mindset I want when walking into an interview
+        </p>
+        </div>
+    </div>
+    </section>
+
+
+    <!-- WALK-UP SONG -->
+    <section id="song" class="reveal">
+      <div class="titleRow">
+        <h2>Walk-Up Song</h2>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Audio Player</h3>
+          <div class="artifactRow" style="margin-top:12px;">
+            <button class="btn btnPrimary" id="playBtn" type="button"><span aria-hidden="true">▶️</span> Play / Pause</button>
+            <button class="btn" id="muteBtn" type="button"><span aria-hidden="true">🔇</span> Mute</button>
+          </div>
+
+          <div style="margin-top:12px;">
+            <audio id="audio" preload="none" controls style="width:100%">
+              <source src="song\Adele_-_I_Drink_Wine_(mp3.pm).mp3" type="audio/mpeg"/>
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Song Choice</h3>
+          <p>
+            <b>Song:</b> <span id="songName">I Drink Wine</span><br/>
+            <b>Why:</b> Because this song beautiful it represents reflection, growth, and self-awareness rather than surface-level confidence. It reminds me to stay grounded, honest, and thoughtful, which is the mindset I want when walking into an interview
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <footer class="reveal">
+      Built with clean HTML/CSS/JS • Smooth transitions • Print-friendly • <span style="color:var(--muted)">Last updated:</span> <span id="dateStamp"></span>
+    </footer>
+  </div>
+
+<script>
+  // ===== Theme =====
+  const themeBtn = document.getElementById("themeBtn");
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
+
+  themeBtn.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme") || "dark";
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  });
+
+  // ===== Print =====
+  const printBtn = document.getElementById("printBtn");
+  if (printBtn) printBtn.addEventListener("click", () => window.print());
+
+  // ===== Scroll progress =====
+  const progressBar = document.getElementById("progressBar");
+  const updateProgress = () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop;
+    const max = doc.scrollHeight - doc.clientHeight;
+    const pct = max > 0 ? (scrollTop / max) * 100 : 0;
+    if (progressBar) progressBar.style.width = pct.toFixed(2) + "%";
+  };
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  updateProgress();
+
+  // ===== Reveal on scroll =====
+  const revealEls = document.querySelectorAll(".reveal");
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) e.target.classList.add("show");
+    }
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // ===== Walk-up audio controls (fixed) =====
+  const audio = document.getElementById("audio");
+  const playBtn = document.getElementById("playBtn");
+  const muteBtn = document.getElementById("muteBtn");
+
+  if (audio && playBtn && muteBtn) {
+    // Helps browsers treat the audio as "known" before play()
+    audio.preload = "metadata";
+    audio.volume = 0.5
+
+    // Set initial button labels
+    playBtn.innerHTML = "▶️ Play";
+    muteBtn.innerHTML = "🔇 Mute";
+
+    playBtn.addEventListener("click", async () => {
+      try {
+        if (audio.paused) {
+          await audio.play();
+          playBtn.innerHTML = "⏸️ Pause";
+        } else {
+          audio.pause();
+          playBtn.innerHTML = "▶️ Play";
+        }
+      } catch (err) {
+        console.error("Playback blocked:", err);
+        alert("Your browser blocked the play button. Click the audio’s native play control once, then try the button again.");
+      }
+    });
+
+    muteBtn.addEventListener("click", () => {
+      audio.muted = !audio.muted;
+      muteBtn.innerHTML = audio.muted ? "🔈 Unmute" : "🔇 Mute";
+    });
+
+    // Keep button text synced if the user uses the native controls
+    audio.addEventListener("play", () => playBtn.innerHTML = "⏸️ Pause");
+    audio.addEventListener("pause", () => playBtn.innerHTML = "▶️ Play");
+  }
+
+  // ===== Footer date =====
+  const dateStamp = document.getElementById("dateStamp");
+  if (dateStamp) {
+    dateStamp.textContent = new Date().toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+  }
+
+  // ===== Smooth "section focus" micro-transition on hash change =====
+  const flashTarget = (el) => {
+    el.style.boxShadow = "var(--ring)";
+    setTimeout(() => el.style.boxShadow = "", 700);
+  };
+  window.addEventListener("hashchange", () => {
+    const id = location.hash.slice(1);
+    const el = id ? document.getElementById(id) : null;
+    if (el) flashTarget(el);
+  });
+</script>
+</body>
+</html>
